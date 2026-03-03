@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parques y Mobiliario Urbano</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--principal:#2F3E46;
+--principal-light:#3A4F58;
+--fondo:#F5F7F9;
+--texto:#34444C;
+--blanco:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:white;
+color:var(--texto);
+}
+
+/* NAVBAR */
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 8%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+nav .logo img {
+  height: 50px; /* Ajusta el tamaño del logo como prefieras */
+  width: auto;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:var(--texto);
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:var(--principal);
+}
+
+nav .cta{
+background:var(--principal);
+color:white;
+padding:8px 18px;
+border-radius:30px;
+}
+
+/* HERO SLIDER */
+
+.hero{
+height:100vh;
+position:relative;
+overflow:hidden;
+margin-top:70px;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+transition:opacity 1s ease-in-out;
+}
+
+.slide::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(47,62,70,0.75);
+}
+
+.slide-content{
+position:relative;
+max-width:800px;
+padding:20px;
+}
+
+.slide h1{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.slide p{
+margin-bottom:30px;
+}
+
+.btn{
+background:var(--principal);
+color:white;
+padding:14px 30px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.btn:hover{
+background:var(--principal-light);
+}
+
+/* SECTIONS */
+
+section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:50px;
+font-weight:700;
+}
+
+/* FILTERS */
+
+.filters{
+text-align:center;
+margin-bottom:40px;
+}
+
+.filters button{
+padding:10px 20px;
+border:none;
+background:#e5e7eb;
+margin:5px;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+}
+
+.filters button.active,
+.filters button:hover{
+background:var(--principal);
+color:white;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-content{
+padding:25px;
+}
+
+.card h3{
+color:var(--principal);
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+margin-bottom:20px;
+}
+
+.card a{
+display:inline-block;
+background:var(--principal);
+color:white;
+padding:10px 22px;
+border-radius:30px;
+text-decoration:none;
+}
+
+/* EXPERIENCE */
+
+.experience{
+background:var(--principal);
+color:white;
+text-align:center;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+margin-top:40px;
+font-size:20px;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:15px;
+}
+
+/* CTA */
+
+.cta{
+background:var(--principal);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+/* CLIENTES */
+
+.clientes{
+background:var(--fondo);
+text-align:center;
+}
+
+.logos{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:40px;
+margin-top:40px;
+font-weight:600;
+color:var(--principal);
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:var(--principal);
+color:white;
+padding:14px 22px;
+border-radius:50px;
+display:flex;
+align-items:center;
+gap:10px;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
+z-index:999;
+}
+
+.whatsapp-float svg{
+width:22px;
+fill:white;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+nav ul{
+display:none;
+}
+
+.hero h1{
+font-size:26px;
+}
+
+.stats{
+gap:30px;
+}
+
+.whatsapp-float span{
+display:none;
+}
+
+}
+/* PROYECTOS CAROUSEL */
+
+#proyectos{
+padding:100px 8%;
+background:#f4f6f8;
+text-align:center;
+}
+
+.carousel-container{
+position:relative;
+overflow:hidden;
+margin-top:40px;
+}
+
+.carousel-track{
+display:flex;
+gap:25px;
+transition:transform 0.5s ease-in-out;
+}
+
+.carousel-track img{
+min-width:350px;
+height:250px;
+object-fit:cover;
+border-radius:16px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+.carousel-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:#5f6f81; /* tu gris azulado elegante */
+color:white;
+border:none;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+font-size:20px;
+z-index:5;
+}
+
+.carousel-btn.prev{
+left:-10px;
+}
+
+.carousel-btn.next{
+right:-10px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.carousel-track img{
+min-width:80%;
+height:200px;
+}
+
+.carousel-btn{
+display:none;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+        <div class="logo">
+          <img src="PARQUES/logo 2.png" alt="Logo Empresa">
+        </div>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#clientes">Clientes</a></li>
+          <li><a href="#contacto" class="cta">Cotizar</a></li>
+        </ul>
+ </nav>
+
+<!-- HERO -->
+<!-- HERO -->
+<div class="hero" id="inicio">
+
+        <!-- SLIDE 1 -->
+        <div class="slide" style="background-image:url('PARQUES/CAneas/WhatsApp-Image-2022-07-04-at-8.59.02-PM-3-768x1024.jpeg');opacity:1;">
+          <div class="slide-content">
+            <h1>Transformamos Espacios en Experiencias Urbanas</h1>
+            <p>Más de 10 años desarrollando parques infantiles y mobiliario urbano</p>
+            <a class="btn" href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20proyecto%20urbano">Cotizar Ahora</a>
+          </div>
+        </div>
+        
+        <!-- SLIDE 2 -->
+        <div class="slide" style="background-image:url('PARQUES/Infantiles/infan2.jpeg');opacity:0;">
+          <div class="slide-content">
+            <h1>Fabricación e Instalación Profesional</h1>
+            <p>Soluciones integrales para constructoras y alcaldías</p>
+          </div>
+        </div>
+        
+        <!-- SLIDE 3 -->
+        <div class="slide" style="background-image:url('PARQUES/Infantiles/infan3.png');opacity:0;">
+          <div class="slide-content">
+            <h1>Diseñamos Parques que Transforman Comunidades</h1>
+            <p>Proyectos urbanos modernos, seguros y duraderos</p>
+          </div>
+        </div>
+        
+        </div>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+        <h2 class="section-title">Nuestros Productos</h2>
+      
+        <div class="filters">
+          <button class="active" onclick="filterSelection('all')">Todos</button>
+          <button onclick="filterSelection('infantil')">Parques Infantiles</button>
+          <button onclick="filterSelection('bio')">Gimnasios Biosaludables</button>
+          <button onclick="filterSelection('urbano')">Mobiliario Urbano</button>
+          <button onclick="filterSelection('otros')">Otros</button>
+        </div>
+      
+        <div class="grid">
+          <!-- Producto 1: Parques Infantiles -->
+          <div class="card filter infantil">
+            <img src="PARQUES/Infantiles/inf1.jpeg" alt="Parque Infantil">
+            <div class="card-content">
+              <h3>Parques Infantiles</h3>
+              <p>Diseños seguros y modernos para niños.</p>
+              <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+            </div>
+          </div>
+           <!-- Producto 1: Parques Infantiles -->
+           <div class="card filter infantil">
+                <img src="PARQUES/Infantiles/infan2.jpeg" alt="Parque Infantil">
+                <div class="card-content">
+                  <h3>Parques Infantiles</h3>
+                  <p>Diseños seguros y modernos para niños.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+                </div>
+              </div>
+               <!-- Producto 1: Parques Infantiles -->
+          <div class="card filter infantil">
+                <img src="PARQUES/Infantiles/infan3.png" alt="Parque Infantil">
+                <div class="card-content">
+                  <h3>Parques Infantiles</h3>
+                  <p>Diseños seguros y modernos para niños.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+                </div>
+              </div> <!-- Producto 1: Parques Infantiles -->
+              <div class="card filter infantil">
+                <img src="PARQUES/Infantiles/infan4.png" alt="Parque Infantil">
+                <div class="card-content">
+                  <h3>Parques Infantiles</h3>
+                  <p>Diseños seguros y modernos para niños.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+                </div>
+              </div> <!-- Producto 1: Parques Infantiles -->
+              <div class="card filter infantil">
+                <img src="PARQUES/Infantiles/infan5.jpg" alt="Parque Infantil">
+                <div class="card-content">
+                  <h3>Parques Infantiles</h3>
+                  <p>Diseños seguros y modernos para niños.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+                </div>
+              </div> <!-- Producto 1: Parques Infantiles -->
+              <div class="card filter infantil">
+                <img src="PARQUES/Infantiles/6.jpg" alt="Parque Infantil">
+                <div class="card-content">
+                  <h3>Parques Infantiles</h3>
+                  <p>Diseños seguros y modernos para niños.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20parque%20infantil">Cotizar</a>
+                </div>
+              </div>
+      
+          <!-- Producto 2: Gimnasios Biosaludables -->
+          <div class="card filter bio">
+                <img src="PARQUES/Biosaludables/calistenia-ac1968.jpeg" alt="Gimnasio Biosaludable">
+                <div class="card-content">
+                  <h3>Gimnasios Biosaludables</h3>
+                  <p>Equipos resistentes para ejercitar al aire libre.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20gimnasio%20biosaludable">Cotizar</a>
+                </div>
+              </div>  <!-- Producto 2: Gimnasios Biosaludables -->
+              <div class="card filter bio">
+                <img src="PARQUES/Biosaludables/fabrica-de-bios-1.jpeg" alt="Gimnasio Biosaludable">
+                <div class="card-content">
+                  <h3>Gimnasios Biosaludables</h3>
+                  <p>Equipos resistentes para ejercitar al aire libre.</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20gimnasio%20biosaludable">Cotizar</a>
+                </div>
+              </div>  <!-- Producto 2: Gimnasios Biosaludables -->
+          <div class="card filter bio">
+            <img src="PARQUES/Biosaludables/parque-biosaludable-4-maquinas-opt.jpg" alt="Gimnasio Biosaludable">
+            <div class="card-content">
+              <h3>Gimnasios Biosaludables</h3>
+              <p>Equipos resistentes para ejercitar al aire libre.</p>
+              <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20gimnasio%20biosaludable">Cotizar</a>
+            </div>
+          </div>
+      
+          <!-- Producto 3: Mobiliario Urbano -->
+          <div class="card filter urbano">
+            <img src="PARQUES/CAneas/Canecas.png" alt="Mobiliario Urbano">
+            <div class="card-content">
+              <h3>Mobiliario Urbano</h3>
+              <p>Canecas.</p>
+              <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20mobiliario%20urbano">Cotizar</a>
+            </div>
+          </div>
+          <div class="card filter urbano">
+                <img src="PARQUES/OTROS/Sillas.png" alt="Mobiliario Urbano">
+                <div class="card-content">
+                  <h3>Mobiliario Urbano</h3>
+                  <p>Bancas</p>
+                  <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20mobiliario%20urbano">Cotizar</a>
+                </div>
+              </div><div class="card filter urbano">
+            <img src="PARQUES/OTROS/techo.png" alt="Mobiliario Urbano">
+            <div class="card-content">
+              <h3>Mobiliario Urbano</h3>
+              <p>Techos y Cerramiento</p>
+              <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20mobiliario%20urbano">Cotizar</a>
+            </div>
+          </div> 
+          <!-- Producto 4: Otros (ejemplo) -->
+          <div class="card filter otros">
+            <img src="PARQUES/OTROS/Grama.png" alt="Accesorios">
+            <div class="card-content">
+              <h3>Accesorios y Complementos</h3>
+              <p>Pelotas, mallas, camarines y más.</p>
+              <a href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20accesorios%20urbanos">Cotizar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<!-- EXPERIENCE -->
+<section class="experience">
+<h2>Más de 10 años construyendo espacios urbanos</h2>
+<div class="stats">
+<div>+10 Años</div>
+<div>+300 Proyectos</div>
+<div>Cobertura Nacional</div>
+</div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+        <h2 class="section-title">Proyectos Realizados</h2>
+      
+        <div class="carousel-container">
+          
+          <button class="carousel-btn prev">&#10094;</button>
+      
+          <div class="carousel-track">
+            <img src="PARQUES/OTROS/Canchas.png" alt="">
+            <img src="PARQUES/OTROS/Sillas.png" alt="">
+            <img src="PARQUES/OTROS/Grama sintetica.png" alt="">
+            <img src="PARQUES/OTROS/Vancos.png" alt="">
+            <img src="PARQUES/CAneas/canecasas.png" alt="">
+            <img src="PARQUES/Par 3.png" alt="">
+            <img src="PARQUES/Screenshot2026-02-23at4.06.44PM.png" alt="">
+            <img src="PARQUES/Screenshot2026-02-23at4.09.58PM.png" alt="">
+            <img src="PARQUES/par1.png" alt="">
+          </div>
+      
+          <button class="carousel-btn next">&#10095;</button>
+      
+        </div>
+      </section>
+
+<!-- CLIENTES -->
+<section class="clientes" id="clientes">
+<h2 class="section-title">Nuestros Clientes</h2>
+<div class="logos">
+<span>Constructoras</span>
+<span>Alcaldías</span>
+<span>Conjuntos Residenciales</span>
+<span>Entidades Públicas</span>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contacto">
+<h2>¿Listo para desarrollar tu proyecto urbano?</h2>
+<br>
+<a class="btn" href="https://wa.me/573188850081?text=Hola,%20quiero%20asesoría%20para%20mi%20proyecto%20urbano">Cotizar por WhatsApp</a>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" href="https://wa.me/573188850081?text=Hola,%20quiero%20cotizar%20un%20proyecto%20urbano" target="_blank">
+<svg viewBox="0 0 32 32">
+<path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.885.756 5.594 2.078 7.957L0 32l7.874-2.063A15.94 15.94 0 0016 32c8.837 0 16-7.164 16-16.004C32 7.56 24.837.396 16 .396z"/>
+</svg>
+<span>318 885 0081</span>
+</a>
+
+<script>
+/* SLIDER */
+let slides = document.querySelectorAll(".slide");
+let current = 0;
+
+setInterval(()=>{
+slides[current].style.opacity=0;
+current = (current+1)%slides.length;
+slides[current].style.opacity=1;
+},5000);
+
+/* FILTER */
+function filterSelection(category){
+let cards = document.querySelectorAll(".filter");
+cards.forEach(card=>{
+if(category=="all" || card.classList.contains(category)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+});
+}
+
+</script>
+
+<script>
+
+        const track = document.querySelector('.carousel-track');
+        let slides = Array.from(track.children);
+        
+        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.prev');
+        
+        let slideWidth = slides[0].clientWidth + 25;
+        let index = 1;
+        
+        /* ===== CLONAR PRIMERA Y ULTIMA ===== */
+        
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+        
+        slides = document.querySelectorAll('.carousel-track img');
+        
+        track.style.transform = `translateX(-${slideWidth * index}px)`;
+        
+        /* ===== FUNCION MOVIMIENTO ===== */
+        
+        function moveToSlide() {
+          track.style.transition = "transform 0.5s ease-in-out";
+          track.style.transform = `translateX(-${slideWidth * index}px)`;
+        }
+        
+        /* ===== BOTON NEXT ===== */
+        
+        nextBtn.addEventListener('click', () => {
+          if(index >= slides.length - 1) return;
+          index++;
+          moveToSlide();
+        });
+        
+        /* ===== BOTON PREV ===== */
+        
+        prevBtn.addEventListener('click', () => {
+          if(index <= 0) return;
+          index--;
+          moveToSlide();
+        });
+        
+        /* ===== RESET SILENCIOSO ===== */
+        
+        track.addEventListener('transitionend', () => {
+        
+          if(slides[index].isEqualNode(firstClone)){
+            track.style.transition = "none";
+            index = 1;
+            track.style.transform = `translateX(-${slideWidth * index}px)`;
+          }
+        
+          if(slides[index].isEqualNode(lastClone)){
+            track.style.transition = "none";
+            index = slides.length - 2;
+            track.style.transform = `translateX(-${slideWidth * index}px)`;
+          }
+        
+        });
+        
+        /* ===== AUTO SLIDE INFINITO ===== */
+        
+        setInterval(() => {
+          index++;
+          moveToSlide();
+        }, 4000);
+        
+        /* ===== RESPONSIVE ===== */
+        
+        window.addEventListener('resize', () => {
+          slideWidth = slides[0].clientWidth + 25;
+          track.style.transition = "none";
+          track.style.transform = `translateX(-${slideWidth * index}px)`;
+        });
+        
+        </script>
+
+</body>
+</html>
